@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+/* Две темы сайта. Тему выбирает посетитель или фиксирует админ (settings.theme). */
+:root,
+[data-theme="warm"] {
+  color-scheme: light;
+  --font-ui: var(--font-manrope);
+  --bg: #eef3fa;
+  --surface: #ffffff;
+  --surface-2: #eef3fa;
+  --text: #16336b;
+  --text-2: #4a5f85;
+  --line: #e3eaf5;
+  --line-2: #b8c6dd;
+  --accent: #ffb020;
+  --on-accent: #16336b;
+  --nav-on: #16336b;
+  --on-nav-on: #ffffff;
+  --seg-on: #ffb020;
+  --on-seg-on: #16336b;
+  --cta: #16336b;
+  --on-cta: #ffffff;
+  --on-cta-2: #c9d6ee;
+  --field: #ffffff;
+  --on-field: #16336b;
+  --step-done: #16336b;
+  --step-todo: #d5dfee;
+  --row-on: #eef3fa;
+
+  --st-scheduled-bg: #eef3fa; --st-scheduled-fg: #16336b;
+  --st-info-bg: #dcebff;      --st-info-fg: #16336b;
+  --st-go-bg: #ffb020;        --st-go-fg: #16336b;
+  --st-warn-bg: #ffe3d6;      --st-warn-fg: #8a2e00;
+  --st-bad-bg: #fde2e2;       --st-bad-fg: #9b1c1c;
+  --st-done-bg: #e2e8f2;      --st-done-fg: #4a5f85;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --font-ui: var(--font-inter);
+  --bg: #000000;
+  --surface: #111113;
+  --surface-2: #1c1c1e;
+  --text: #f5f5f7;
+  --text-2: #a1a1a6;
+  --line: #222225;
+  --line-2: #3a3a3c;
+  --accent: #0a84ff;
+  --on-accent: #ffffff;
+  --nav-on: #2c2c2e;
+  --on-nav-on: #ffffff;
+  --seg-on: #3a3a3c;
+  --on-seg-on: #ffffff;
+  --cta: #1c1c1e;
+  --on-cta: #f5f5f7;
+  --on-cta-2: #a1a1a6;
+  --field: #2c2c2e;
+  --on-field: #f5f5f7;
+  --step-done: #f5f5f7;
+  --step-todo: #2c2c2e;
+  --row-on: #1c1c1e;
+
+  --st-scheduled-bg: #1c1c1e; --st-scheduled-fg: #d1d1d6;
+  --st-info-bg: #0b2a3a;      --st-info-fg: #64d2ff;
+  --st-go-bg: #0f2e18;        --st-go-fg: #30d158;
+  --st-warn-bg: #33230a;      --st-warn-fg: #ff9f0a;
+  --st-bad-bg: #3a1214;       --st-bad-fg: #ff6961;
+  --st-done-bg: #1c1c1e;      --st-done-fg: #8e8e93;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-text: var(--text);
+  --color-text-2: var(--text-2);
+  --color-line: var(--line);
+  --color-line-2: var(--line-2);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-nav-on: var(--nav-on);
+  --color-on-nav-on: var(--on-nav-on);
+  --color-seg-on: var(--seg-on);
+  --color-on-seg-on: var(--on-seg-on);
+  --color-cta: var(--cta);
+  --color-on-cta: var(--on-cta);
+  --color-on-cta-2: var(--on-cta-2);
+  --color-field: var(--field);
+  --color-on-field: var(--on-field);
+  --color-step-done: var(--step-done);
+  --color-step-todo: var(--step-todo);
+  --color-row-on: var(--row-on);
+  --font-sans: var(--font-ui), system-ui, sans-serif;
+}
+
+html {
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+body {
+  font-family: var(--font-ui), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Тексты, которые различаются по темам (например, заголовок). */
+[data-theme="dark"] .only-warm,
+:root:not([data-theme="dark"]) .only-dark {
+  display: none;
+}
+
+.status {
+  background: var(--st-scheduled-bg);
+  color: var(--st-scheduled-fg);
+}
+.status[data-kind="info"] { background: var(--st-info-bg); color: var(--st-info-fg); }
+.status[data-kind="go"] { background: var(--st-go-bg); color: var(--st-go-fg); }
+.status[data-kind="warn"] { background: var(--st-warn-bg); color: var(--st-warn-fg); }
+.status[data-kind="bad"] { background: var(--st-bad-bg); color: var(--st-bad-fg); }
+.status[data-kind="done"] { background: var(--st-done-bg); color: var(--st-done-fg); }
+
+/* Мягкая подсветка строки, которая только что изменилась по Realtime. */
+@keyframes kgd-flash {
+  from { background-color: color-mix(in srgb, var(--accent) 22%, transparent); }
+  to { background-color: transparent; }
+}
+.flash {
+  animation: kgd-flash 1.6s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { transition: none; }
+  .flash { animation: none; }
+}
