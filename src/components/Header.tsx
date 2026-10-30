@@ -13,13 +13,16 @@ export const NAV = [
 
 export function Logo() {
   return (
-    <Link href="/" className="flex items-center gap-3" aria-label="KGD Гид, на главную">
-      <span className="grid size-10 place-items-center rounded-full bg-accent text-[12px] font-extrabold text-on-accent md:size-11 md:text-[13px]">
+    <Link href="/" className="flex items-center gap-3" aria-label="KGD — аэропорт Калининграда, на главную">
+      <span className="grid size-10 shrink-0 place-items-center rounded-full bg-accent text-[12px] font-extrabold text-on-accent md:size-11 md:text-[13px]">
         KGD
       </span>
       <span className="flex flex-col leading-tight">
-        <span className="text-[16px] font-extrabold md:text-[17px]">KGD Гид</span>
-        <span className="hidden text-[12px] text-text-2 sm:block">аэропорт Калининграда · независимый сервис</span>
+        <span className="text-[15px] font-extrabold md:text-[17px]">
+          <span className="sm:hidden">Аэропорт Калининграда</span>
+          <span className="hidden sm:inline">KGD — аэропорт Калининграда</span>
+        </span>
+        <span className="hidden text-[12px] text-text-2 sm:block">неофициальный гид</span>
       </span>
     </Link>
   );

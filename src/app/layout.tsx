@@ -11,13 +11,13 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "KGD Гид — онлайн-табло аэропорта Калининграда (Храброво)",
-    template: "%s · KGD Гид",
+    default: "KGD — аэропорт Калининграда: онлайн-табло Храброво",
+    template: "%s · KGD — аэропорт Калининграда",
   },
   description:
     "Независимый гид по аэропорту Храброво: онлайн-табло вылета и прилёта в реальном времени, статусы рейсов, как добраться, авиабилеты и трансфер.",
-  applicationName: "KGD Гид",
-  openGraph: { type: "website", locale: "ru_RU", siteName: "KGD Гид" },
+  applicationName: "KGD — аэропорт Калининграда",
+  openGraph: { type: "website", locale: "ru_RU", siteName: "KGD — аэропорт Калининграда" },
 };
 
 export const viewport: Viewport = {
